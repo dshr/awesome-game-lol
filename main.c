@@ -353,6 +353,10 @@ int main(int argc, char *argv[])
     
     digRect.w = 55;
     digRect.h = 60;
+
+	Mix_Music *music = NULL;
+	Mix_OpenAudio( 22050, MIX_DEFAULT_FORMAT, 2, 4096 );
+	music = Mix_LoadMUS( "gfx/loop.wav" );
     
 
 	/* Start up SDL */
@@ -427,6 +431,15 @@ int main(int argc, char *argv[])
                 row += 10;
                 col += 10;
             }
+
+	if( Mix_PlayingMusic() == 0 )
+                    {
+                        //Play the music
+                        if( Mix_PlayMusic( music, -1 ) == -1 )
+                        {
+                            return 1;
+                        }    
+                    }
             
             level = createLevel(row, col, chanceToStartAlive, birthLimit, deathLimit, numberOfSteps);
             

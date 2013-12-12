@@ -282,12 +282,13 @@ int main(int argc, char *argv[])
     CoinPosition* coins = NULL;
     SlugPosition* slugs = NULL;
     
-    char *name;
+    /*char *name;
 	int score; 
 	FILE *scorestream;
-	scorestream = fopen("highscores.txt","a+");
+	scorestream = fopen("highscores.txt","a");
+	
 	char nameput;
-    
+    */
     TTF_Init();
     
     SDL_Color textcolor = {255,255,255};
@@ -352,6 +353,10 @@ int main(int argc, char *argv[])
     
     digRect.w = 55;
     digRect.h = 60;
+
+	Mix_Music *music = NULL;
+	Mix_OpenAudio( 22050, MIX_DEFAULT_FORMAT, 2, 4096 );
+	music = Mix_LoadMUS( "gfx/loop.wav" );
     
 
 	/* Start up SDL */
@@ -577,14 +582,13 @@ int main(int argc, char *argv[])
                         if(lives == 0)
                         {
                             displayGameOver(screen);
-                            
-                            while(nameput != '\n'){
-                            	nameput = getInput();
+                           /* while(nameput != '\n'){
+                            	nameput = (char)getInput();
                             	name[e] = nameput;
                             	e++;
                             }
                             
-                            writeScore(name,score,scorestream);
+                            writeScore(name,score,scorestream);*/
                             menuQuit = 1;
                         }
                     }
