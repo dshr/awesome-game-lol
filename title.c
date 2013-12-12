@@ -121,7 +121,6 @@ int askToQuit(SDL_Surface *screen)
             case SDLK_RETURN:
                 switch (menuCounter) {
                     case 0:
-                    	printScores(screen,font,whiteColor);
                         return 1;
                         break;
                     case 1:
@@ -304,23 +303,23 @@ int title(SDL_Surface *screen){
                 if(menuCounter>0) menuCounter--;
                 break;
             case SDLK_DOWN:
-                if(menuCounter<3) menuCounter++;
+                if(menuCounter<2) menuCounter++;
                 break;
             case SDLK_RETURN:
                 switch (menuCounter) {
                     case 0:
                         startGame = 1;
                         break;
-                    case 1:
+                  /*  case 1:
                         highscores = fopen("scores", "rb");
                         fread(&score, sizeof(score), 1 , highscores);
                         fclose(highscores);
                         printf("%d\n", score);
-                        break;
-                    case 2:
+                        break;*/
+                    case 1:
                         runCredits(screen);
                         break;
-                    case 3:
+                    case 2:
                         return 1;
                         break;
                     default:
@@ -338,25 +337,25 @@ int title(SDL_Surface *screen){
         switch (menuCounter) {
             case 0:
                 start = TTF_RenderText_Solid(font, "Start", redColor);
-                scores = TTF_RenderText_Solid(font, "High Scores", whiteColor);
+              //  scores = TTF_RenderText_Solid(font, "High Scores", whiteColor);
                 credits = TTF_RenderText_Solid(font, "Credits", whiteColor);
                 quit = TTF_RenderText_Solid(font, "Quit", whiteColor);
                 break;
+           /* case 1:
+                start = TTF_RenderText_Solid(font, "Start", whiteColor);
+              //  scores = TTF_RenderText_Solid(font, "High Scores", redColor);
+                credits = TTF_RenderText_Solid(font, "Credits", whiteColor);
+                quit = TTF_RenderText_Solid(font, "Quit", whiteColor);
+                break;*/
             case 1:
                 start = TTF_RenderText_Solid(font, "Start", whiteColor);
-                scores = TTF_RenderText_Solid(font, "High Scores", redColor);
-                credits = TTF_RenderText_Solid(font, "Credits", whiteColor);
+              //  scores = TTF_RenderText_Solid(font, "High Scores", whiteColor);
+                credits = TTF_RenderText_Solid(font, "Credits", redColor);
                 quit = TTF_RenderText_Solid(font, "Quit", whiteColor);
                 break;
             case 2:
                 start = TTF_RenderText_Solid(font, "Start", whiteColor);
-                scores = TTF_RenderText_Solid(font, "High Scores", whiteColor);
-                credits = TTF_RenderText_Solid(font, "Credits", redColor);
-                quit = TTF_RenderText_Solid(font, "Quit", whiteColor);
-                break;
-            case 3:
-                start = TTF_RenderText_Solid(font, "Start", whiteColor);
-                scores = TTF_RenderText_Solid(font, "High Scores", whiteColor);
+               // scores = TTF_RenderText_Solid(font, "High Scores", whiteColor);
                 credits = TTF_RenderText_Solid(font, "Credits", whiteColor);
                 quit = TTF_RenderText_Solid(font, "Quit", redColor);
                 break;
@@ -373,7 +372,7 @@ int title(SDL_Surface *screen){
         drawImage(screen,instructions,NULL,300,400,1,1);
         
         drawImage(screen,start,NULL,690,500,1,1);
-        drawImage(screen,scores,NULL,655,530,1,1);
+        //drawImage(screen,scores,NULL,655,530,1,1);
         drawImage(screen,credits,NULL,680,560,1,1);
         drawImage(screen,quit,NULL,695,590,1,1);
         
@@ -384,7 +383,7 @@ int title(SDL_Surface *screen){
     SDL_FreeSurface(title);
     SDL_FreeSurface(titleShadow);
     SDL_FreeSurface(start);
-    SDL_FreeSurface(scores);
+   // SDL_FreeSurface(scores);
     SDL_FreeSurface(credits);
     SDL_FreeSurface(quit);
     
